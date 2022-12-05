@@ -14,8 +14,8 @@
     {
         public int? Year;                   // null = undefined
         public string Name;
-        public GrapeVariants Grape;
-        public GrapeRegions Region;
+        public GrapeVariants? Grape;
+        public GrapeRegions? Region;
 
         /// <summary>
         /// Creates a string representing the content of the Wine struct
@@ -27,6 +27,7 @@
             return $"Wine {Year} {Name} is made of {Grape} from {Region}";
         }
     }
+
     class Program
     {
         static void Main(string[] args)
@@ -82,6 +83,8 @@
                     myCellar[i].Region = wine.Region;
                     myCellar[i].Grape = wine.Grape;
 
+                    //alternative
+                    myCellar[i] = wine;
                     return true;
                 }
             }
