@@ -6,8 +6,8 @@
         static void Main(string[] args)
         {
 
-            WineCellar abwc = new WineCellar();
-            Console.WriteLine($"My cellar can have maximum {WineCellar.maxNrBottles} bottles");
+            IWineCellar abwc = new WineCellar();
+            Console.WriteLine($"My {nameof(abwc)} cellar can have maximum {WineCellar.maxNrBottles} bottles");
 
             Wine wine1 = new Wine { Year = 2000, Name = "Château Lafite Rothschild", Grape = GrapeVariants.CabernetSauvignon, Region = GrapeRegions.Bordeaux };
             bool bOK = abwc.InsertWine(wine1);
@@ -25,25 +25,27 @@
             bOK = abwc.InsertWine(wine5);
 
 
-            Console.WriteLine();
+            Console.WriteLine($"Wines in {nameof(abwc)}:");
             abwc.PrintWines();
 
-            Console.WriteLine();
-            Console.WriteLine(abwc.NrOfBottles());
+            Console.WriteLine($"\nNr of bottles: {abwc.NrOfBottles()}");
 
-            Console.WriteLine();
-            Console.WriteLine(abwc.NrOfBottles(GrapeVariants.CabernetSauvignon));
+            var grape = GrapeVariants.CabernetSauvignon;
+            Console.WriteLine($"Nr of bottles of {grape}: {abwc.NrOfBottles(GrapeVariants.CabernetSauvignon)}");
 
 
-            WineCellar abwc1 = new WineCellar();
+            IWineCellar abwc1 = new WineCellar();
+            Console.WriteLine($"\n\nMy {nameof(abwc1)} cellar can have maximum {WineCellar.maxNrBottles} bottles");
+
             abwc1.InsertWine(new Wine { Year = 2000, Name = "An even better wine", Grape = GrapeVariants.CabernetSauvignon, Region = GrapeRegions.Bordeaux });
- 
-            Console.WriteLine();
-            Console.WriteLine(abwc1.NrOfBottles());
 
-            Console.WriteLine();
-            Console.WriteLine(abwc.NrOfBottles());
+            Console.WriteLine($"Wines in {nameof(abwc1)}:");
+            abwc1.PrintWines();
 
+            Console.WriteLine($"\nNr of bottles: {abwc1.NrOfBottles()}");
+     
+            grape = GrapeVariants.CabernetSauvignon;
+            Console.WriteLine($"Nr of bottles of {grape}: {abwc1.NrOfBottles(GrapeVariants.CabernetSauvignon)}");
         }
     }
 }
